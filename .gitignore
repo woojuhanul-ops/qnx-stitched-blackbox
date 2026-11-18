@@ -1,0 +1,10 @@
+# Build artifacts (produced by build.bat / mkifs — not source)
+*.ifs
+ledgerd
+sensord
+watchdog
+verifier
+hosttest/host_main
+*.o
+*.log
+__pycache__/

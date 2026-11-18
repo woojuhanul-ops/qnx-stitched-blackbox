@@ -1,0 +1,23 @@
+# QNX 8.0 x86_64 QEMU boot image - Stitched Blackbox (flat /proc/boot layout)
+[virtual=x86_64,multiboot] boot = {
+    startup-x86 -D8250..115200 -v
+    PATH=/proc/boot LD_LIBRARY_PATH=/proc/boot procnto-smp-instr
+}
+[+script] startup-script = {
+    display_msg "\n=== QNX BLACKBOX BOOT ===\n"
+    devc-ser8250 -b115200 &
+    waitfor /dev/ser1
+    reopen /dev/ser1
+    watchdog &
+    verifier
+    display_msg "\n=== BLACKBOX RUN END ===\n"
+}
+devc-ser8250 = D:/QNX/sdp8/target/qnx/x86_64/sbin/devc-ser8250
+ledgerd = D:/Chronica/qnx/blackbox/ledgerd
+sensord = D:/Chronica/qnx/blackbox/sensord
+watchdog = D:/Chronica/qnx/blackbox/watchdog
+verifier = D:/Chronica/qnx/blackbox/verifier
+libc.so.6 = D:/QNX/sdp8/target/qnx/x86_64/lib/libc.so.6
+libgcc_s.so.1 = D:/QNX/sdp8/target/qnx/x86_64/lib/libgcc_s.so.1
+libsecpol.so.1 = D:/QNX/sdp8/target/qnx/x86_64/lib/libsecpol.so.1
+/usr/lib/ldqnx-64.so.2 = D:/QNX/sdp8/target/qnx/x86_64/usr/lib/ldqnx-64.so.2

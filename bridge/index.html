@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stitched Ledger — QNX Target Bridge</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-title">STITCHED LEDGER</div>
+    <div class="header-subtitle">Deterministic record retrieval — no model, no guessing</div>
+    <div class="header-readouts">
+      <span class="readout"><span class="readout-label">ROWS</span><span class="readout-value">48</span></span>
+      <span class="readout"><span class="readout-label">COLUMNS</span><span class="readout-value">8</span></span>
+      <span class="readout"><span class="readout-label">ENGINE</span><span class="readout-value">DETERMINISTIC</span></span>
+      <span class="readout"><span class="readout-label">TARGET</span><span class="readout-value">QNX 8.0 · QEMU x86_64</span></span>
+    </div>
+  </header>
+
+  <main class="main-split">
+    <section class="query-panel">
+      <div class="answer-card state-answer">
+        <div class="card-status">ANSWER · streamed from QNX target</div>
+        <div class="card-answer">Cabinet A</div>
+        <div class="evidence-chips"><span class="ev-chip">Row 1 · location</span></div>
+        <div class="stitch-line">evidence → <span class="stitch-coords">[Row 1 · location]</span></div>
+        <p>Question 1 of the on-target exam: “Where is Sulfuric Acid located?” — answered by the
+        ledger server on QNX via MsgSend/MsgReply in 874.9 µs of server-side retrieval.</p>
+      </div>
+
+      <div class="verify-panel">
+        <div class="verify-result">
+          <div class="verify-summary">
+            <span class="vpass">On-target exam: retrieval 66/66 · abstention 15/15 · evidence 66/66</span><br/>
+            Server retrieval (QEMU-measured): median 37.4 µs, avg 91.0 µs, p95 374.1 µs, max 874.9 µs ·
+            IPC round-trip median 164.1 µs<br/>
+            Time budget derived from measurement (20 × slowest): 17.50 ms — re-run identical 81/81, timeouts 0 ·
+            1-cycle budget: ABSTAIN_TIMEOUT 3/3<br/>
+            Determinism: 8,100 repeated queries, 0 mismatches<br/>
+            Fault injection: sensor killed → detected 15.80 ms, revived 28.61 ms,
+            ledger process unchanged (pid 5) and still answering, FAULT + RESPAWN recorded in the ledger ring.
+          </div>
+          <div class="verify-elapsed">Measured on QNX Neutrino 8.0 under QEMU 10.2 on the workstation — emulation timing, reported as measured.</div>
+        </div>
+      </div>
+
+      <table class="ledger-table">
+        <thead><tr><th>#</th><th>Type</th><th>Question</th><th>Status</th><th>Answer (target)</th><th>Server time</th><th>OK</th></tr></thead>
+        <tbody>
+<tr><td class="row-num">1</td><td>T1</td><td>Where is Sulfuric Acid located?</td><td>ANSWER</td><td>Cabinet A</td><td>874.9 µs</td><td>✓</td></tr>
+<tr><td class="row-num">2</td><td>T1</td><td>Where is Nitric Acid located?</td><td>ANSWER</td><td>Cabinet A</td><td>45.5 µs</td><td>✓</td></tr>
+<tr><td class="row-num">3</td><td>T1</td><td>Where is Phosphorus located?</td><td>ANSWER</td><td>Vault Shelf 1</td><td>54.0 µs</td><td>✓</td></tr>
+<tr><td class="row-num">4</td><td>T1</td><td>Where is Alcohol (Ethanol) located?</td><td>ANSWER</td><td>Cold Room</td><td>23.8 µs</td><td>✓</td></tr>
+<tr><td class="row-num">5</td><td>T1</td><td>Where is Lightning Rod Assembly located?</td><td>ANSWER</td><td>North Tower</td><td>45.6 µs</td><td>✓</td></tr>
+<tr><td class="row-num">6</td><td>T1</td><td>Where is Electrostatic Generator located?</td><td>ANSWER</td><td>Workbench 1</td><td>22.2 µs</td><td>✓</td></tr>
+<tr><td class="row-num">7</td><td>T1</td><td>Where is Brass Electrometer located?</td><td>ANSWER</td><td>Glass Case</td><td>69.3 µs</td><td>✓</td></tr>
+<tr><td class="row-num">8</td><td>T1</td><td>Where is Galvanometer located?</td><td>ANSWER</td><td>Glass Case</td><td>23.0 µs</td><td>✓</td></tr>
+<tr><td class="row-num">9</td><td>T1</td><td>Where is Iron Restraint Frame located?</td><td>ANSWER</td><td>Main Hall</td><td>23.7 µs</td><td>✓</td></tr>
+<tr><td class="row-num">10</td><td>T1</td><td>Where is Ventilation Hood located?</td><td>ANSWER</td><td>Main Hall</td><td>29.3 µs</td><td>✓</td></tr>
+<tr><td class="row-num">11</td><td>T1</td><td>Where is Anatomical Atlas located?</td><td>ANSWER</td><td>Reading Desk</td><td>45.0 µs</td><td>✓</td></tr>
+<tr><td class="row-num">12</td><td>T1</td><td>Where is Iron Chain located?</td><td>ANSWER</td><td>Cellar Rack</td><td>21.5 µs</td><td>✓</td></tr>
+<tr><td class="row-num">13</td><td>T2</td><td>What is the role of Ether?</td><td>ANSWER</td><td>Anesthetic for specimen preparation</td><td>272.3 µs</td><td>✓</td></tr>
+<tr><td class="row-num">14</td><td>T2</td><td>What is the role of Mercury?</td><td>ANSWER</td><td>Conductive fluid for switch contacts</td><td>45.0 µs</td><td>✓</td></tr>
+<tr><td class="row-num">15</td><td>T2</td><td>What is the role of Silver Nitrate?</td><td>ANSWER</td><td>Staining agent for tissue samples</td><td>69.9 µs</td><td>✓</td></tr>
+<tr><td class="row-num">16</td><td>T2</td><td>What is the role of Leyden Jar?</td><td>ANSWER</td><td>Charge storage capacitor</td><td>69.3 µs</td><td>✓</td></tr>
+<tr><td class="row-num">17</td><td>T2</td><td>What is the role of Spark Gap Transmitter?</td><td>ANSWER</td><td>Controlled discharge across electrodes</td><td>24.0 µs</td><td>✓</td></tr>
+<tr><td class="row-num">18</td><td>T2</td><td>What is the role of Insulated Clamp Set?</td><td>ANSWER</td><td>Safe handling of charged conductors</td><td>23.9 µs</td><td>✓</td></tr>
+<tr><td class="row-num">19</td><td>T2</td><td>What is the role of Glass Bell Jar?</td><td>ANSWER</td><td>Vacuum chamber cover</td><td>24.7 µs</td><td>✓</td></tr>
+<tr><td class="row-num">20</td><td>T2</td><td>What is the role of Drainage Channel?</td><td>ANSWER</td><td>Fluid runoff from the cellar rack</td><td>24.0 µs</td><td>✓</td></tr>
+<tr><td class="row-num">21</td><td>T2</td><td>What is the role of Specimen Index Cards?</td><td>ANSWER</td><td>Catalog of preserved specimens</td><td>24.9 µs</td><td>✓</td></tr>
+<tr><td class="row-num">22</td><td>T2</td><td>What is the role of Leather Strap Set?</td><td>ANSWER</td><td>Restraint straps for the platform</td><td>24.6 µs</td><td>✓</td></tr>
+<tr><td class="row-num">23</td><td>T3</td><td>What is the quantity of Copper Sulfate?</td><td>ANSWER</td><td>1200 g</td><td>298.0 µs</td><td>✓</td></tr>
+<tr><td class="row-num">24</td><td>T3</td><td>What is the quantity of Ammonium Chloride?</td><td>ANSWER</td><td>800 g</td><td>80.0 µs</td><td>✓</td></tr>
+<tr><td class="row-num">25</td><td>T3</td><td>What is the quantity of Galvanic Battery Bank?</td><td>ANSWER</td><td>24 cells</td><td>49.5 µs</td><td>✓</td></tr>
+<tr><td class="row-num">26</td><td>T3</td><td>What is the quantity of Vacuum Pump?</td><td>ANSWER</td><td>1 pump</td><td>32.5 µs</td><td>✓</td></tr>
+<tr><td class="row-num">27</td><td>T3</td><td>What is the quantity of Dynamometer?</td><td>ANSWER</td><td>1 instrument</td><td>32.0 µs</td><td>✓</td></tr>
+<tr><td class="row-num">28</td><td>T3</td><td>What is the quantity of Specimen Jar Set?</td><td>ANSWER</td><td>36 jars</td><td>32.7 µs</td><td>✓</td></tr>
+<tr><td class="row-num">29</td><td>T3</td><td>What is the quantity of Hoist and Pulley?</td><td>ANSWER</td><td>1 hoist</td><td>30.0 µs</td><td>✓</td></tr>
+<tr><td class="row-num">30</td><td>T3</td><td>What is the quantity of Experiment Logbook Volume I?</td><td>ANSWER</td><td>1 volume</td><td>30.8 µs</td><td>✓</td></tr>
+<tr><td class="row-num">31</td><td>T3</td><td>What is the quantity of Zinc Plates?</td><td>ANSWER</td><td>40 plates</td><td>30.6 µs</td><td>✓</td></tr>
+<tr><td class="row-num">32</td><td>T3</td><td>What is the quantity of Glass Tube Bundle?</td><td>ANSWER</td><td>20 tubes</td><td>37.4 µs</td><td>✓</td></tr>
+<tr><td class="row-num">33</td><td>T4</td><td>What is the hazard class of Distilled Water?</td><td>ANSWER</td><td>Class 0</td><td>314.1 µs</td><td>✓</td></tr>
+<tr><td class="row-num">34</td><td>T4</td><td>What is the hazard class of Beeswax?</td><td>ANSWER</td><td>Class 0</td><td>45.2 µs</td><td>✓</td></tr>
+<tr><td class="row-num">35</td><td>T4</td><td>What is the hazard class of Copper Coil?</td><td>ANSWER</td><td>Class 1</td><td>55.0 µs</td><td>✓</td></tr>
+<tr><td class="row-num">36</td><td>T4</td><td>What is the hazard class of Hand-Crank Dynamo?</td><td>ANSWER</td><td>Class 1</td><td>82.3 µs</td><td>✓</td></tr>
+<tr><td class="row-num">37</td><td>T4</td><td>What is the hazard class of Operating Table?</td><td>ANSWER</td><td>Class 1</td><td>28.8 µs</td><td>✓</td></tr>
+<tr><td class="row-num">38</td><td>T4</td><td>What is the hazard class of Marble Slab?</td><td>ANSWER</td><td>Class 0</td><td>29.7 µs</td><td>✓</td></tr>
+<tr><td class="row-num">39</td><td>T4</td><td>What is the hazard class of Electrical Schemas Binder?</td><td>ANSWER</td><td>Class 0</td><td>30.4 µs</td><td>✓</td></tr>
+<tr><td class="row-num">40</td><td>T4</td><td>What is the hazard class of Silk Cloth Roll?</td><td>ANSWER</td><td>Class 0</td><td>30.2 µs</td><td>✓</td></tr>
+<tr><td class="row-num">41</td><td>T5</td><td>What is Iron Filings connected to?</td><td>ANSWER</td><td>Electrostatic Generator</td><td>374.1 µs</td><td>✓</td></tr>
+<tr><td class="row-num">42</td><td>T5</td><td>What is Condenser Array connected to?</td><td>ANSWER</td><td>Lightning Rod Assembly, Distilled Water</td><td>84.8 µs</td><td>✓</td></tr>
+<tr><td class="row-num">43</td><td>T5</td><td>What is Porcelain Insulator Set connected to?</td><td>ANSWER</td><td>Beeswax, Lightning Rod Assembly</td><td>31.4 µs</td><td>✓</td></tr>
+<tr><td class="row-num">44</td><td>T5</td><td>What is Surgical Lamp Array connected to?</td><td>ANSWER</td><td>Alcohol (Ethanol)</td><td>77.2 µs</td><td>✓</td></tr>
+<tr><td class="row-num">45</td><td>T5</td><td>What is Observation Rail connected to?</td><td>ANSWER</td><td>Lightning Rod Assembly</td><td>33.4 µs</td><td>✓</td></tr>
+<tr><td class="row-num">46</td><td>T5</td><td>What is Experiment Logbook Volume II connected to?</td><td>ANSWER</td><td>Experiment Logbook Volume I, Specimen Index Cards</td><td>32.7 µs</td><td>✓</td></tr>
+<tr><td class="row-num">47</td><td>T5</td><td>What is Weather Observation Ledger connected to?</td><td>ANSWER</td><td>Phosphorus, Lightning Rod Assembly</td><td>31.3 µs</td><td>✓</td></tr>
+<tr><td class="row-num">48</td><td>T5</td><td>What is Copper Wire Spool connected to?</td><td>ANSWER</td><td>Lightning Rod Assembly, Galvanic Battery Bank, Insulated Clamp Set</td><td>94.7 µs</td><td>✓</td></tr>
+<tr><td class="row-num">49</td><td>T6</td><td>How many items are located in Main Hall?</td><td>ANSWER</td><td>6</td><td>454.4 µs</td><td>✓</td></tr>
+<tr><td class="row-num">50</td><td>T6</td><td>How many items are located in Cabinet B?</td><td>ANSWER</td><td>5</td><td>32.9 µs</td><td>✓</td></tr>
+<tr><td class="row-num">51</td><td>T6</td><td>How many items are located in Cold Room?</td><td>ANSWER</td><td>2</td><td>53.2 µs</td><td>✓</td></tr>
+<tr><td class="row-num">52</td><td>T6</td><td>How many items are located in Vault Shelf 1?</td><td>ANSWER</td><td>4</td><td>70.7 µs</td><td>✓</td></tr>
+<tr><td class="row-num">53</td><td>T6</td><td>How many items are located in Glass Case?</td><td>ANSWER</td><td>3</td><td>104.7 µs</td><td>✓</td></tr>
+<tr><td class="row-num">54</td><td>T6</td><td>How many items are located in Reading Desk?</td><td>ANSWER</td><td>5</td><td>35.0 µs</td><td>✓</td></tr>
+<tr><td class="row-num">55</td><td>T7</td><td>How many items are of type Reagent?</td><td>ANSWER</td><td>12</td><td>316.6 µs</td><td>✓</td></tr>
+<tr><td class="row-num">56</td><td>T7</td><td>How many items are of type Equipment?</td><td>ANSWER</td><td>14</td><td>112.3 µs</td><td>✓</td></tr>
+<tr><td class="row-num">57</td><td>T7</td><td>How many items are of type Fixture?</td><td>ANSWER</td><td>10</td><td>34.3 µs</td><td>✓</td></tr>
+<tr><td class="row-num">58</td><td>T7</td><td>How many items are of type Record?</td><td>ANSWER</td><td>6</td><td>70.3 µs</td><td>✓</td></tr>
+<tr><td class="row-num">59</td><td>T7</td><td>How many items are of type Material?</td><td>ANSWER</td><td>6</td><td>35.3 µs</td><td>✓</td></tr>
+<tr><td class="row-num">60</td><td>T8</td><td>Which has the greater quantity, Sulfuric Acid or Mercury?</td><td>ANSWER</td><td>Sulfuric Acid</td><td>440.2 µs</td><td>✓</td></tr>
+<tr><td class="row-num">61</td><td>T8</td><td>Which has the greater quantity, Distilled Water or Ether?</td><td>ANSWER</td><td>Distilled Water</td><td>86.0 µs</td><td>✓</td></tr>
+<tr><td class="row-num">62</td><td>T8</td><td>Which has the greater quantity, Specimen Index Cards or Specimen Jar Set?</td><td>ANSWER</td><td>Specimen Index Cards</td><td>166.9 µs</td><td>✓</td></tr>
+<tr><td class="row-num">63</td><td>T8</td><td>Which has the greater quantity, Zinc Plates or Galvanic Battery Bank?</td><td>ANSWER</td><td>Zinc Plates</td><td>68.6 µs</td><td>✓</td></tr>
+<tr><td class="row-num">64</td><td>T9</td><td>Which item has the role &quot;Charge storage capacitor&quot;?</td><td>ANSWER</td><td>Leyden Jar</td><td>496.6 µs</td><td>✓</td></tr>
+<tr><td class="row-num">65</td><td>T9</td><td>Which item has the role &quot;Vacuum chamber cover&quot;?</td><td>ANSWER</td><td>Glass Bell Jar</td><td>73.3 µs</td><td>✓</td></tr>
+<tr><td class="row-num">66</td><td>T9</td><td>Which item has the role &quot;Storm and pressure readings&quot;?</td><td>ANSWER</td><td>Weather Observation Ledger</td><td>99.7 µs</td><td>✓</td></tr>
+<tr><td class="row-num">67</td><td>TRAP</td><td>Where is the Chronium Crystal located?</td><td>ABSTAIN</td><td>—</td><td>112.9 µs</td><td>✓</td></tr>
+<tr><td class="row-num">68</td><td>TRAP</td><td>What is the role of the Perpetual Motion Wheel?</td><td>ABSTAIN</td><td>—</td><td>28.4 µs</td><td>✓</td></tr>
+<tr><td class="row-num">69</td><td>TRAP</td><td>What is the quantity of the Philosopher&#x27;s Stone?</td><td>ABSTAIN</td><td>—</td><td>27.3 µs</td><td>✓</td></tr>
+<tr><td class="row-num">70</td><td>TRAP</td><td>What is the hazard class of the Elixir of Life?</td><td>ABSTAIN</td><td>—</td><td>48.1 µs</td><td>✓</td></tr>
+<tr><td class="row-num">71</td><td>TRAP</td><td>What is the Moonlight Condenser connected to?</td><td>ABSTAIN</td><td>—</td><td>26.7 µs</td><td>✓</td></tr>
+<tr><td class="row-num">72</td><td>TRAP</td><td>What color is the Copper Coil?</td><td>ABSTAIN</td><td>—</td><td>19.0 µs</td><td>✓</td></tr>
+<tr><td class="row-num">73</td><td>TRAP</td><td>When was the Leyden Jar acquired?</td><td>ABSTAIN</td><td>—</td><td>18.5 µs</td><td>✓</td></tr>
+<tr><td class="row-num">74</td><td>TRAP</td><td>Who built the Vacuum Pump?</td><td>ABSTAIN</td><td>—</td><td>17.7 µs</td><td>✓</td></tr>
+<tr><td class="row-num">75</td><td>TRAP</td><td>What is the price of the Ether?</td><td>ABSTAIN</td><td>—</td><td>195.6 µs</td><td>✓</td></tr>
+<tr><td class="row-num">76</td><td>TRAP</td><td>How many items are located in the Attic?</td><td>ABSTAIN</td><td>—</td><td>70.6 µs</td><td>✓</td></tr>
+<tr><td class="row-num">77</td><td>TRAP</td><td>How many items are located in the Dungeon?</td><td>ABSTAIN</td><td>—</td><td>21.5 µs</td><td>✓</td></tr>
+<tr><td class="row-num">78</td><td>TRAP</td><td>How many items are of type Weapon?</td><td>ABSTAIN</td><td>—</td><td>22.3 µs</td><td>✓</td></tr>
+<tr><td class="row-num">79</td><td>TRAP</td><td>Which has the greater quantity, the Copper Coil or the Chronium Crystal?</td><td>ABSTAIN</td><td>—</td><td>31.9 µs</td><td>✓</td></tr>
+<tr><td class="row-num">80</td><td>TRAP</td><td>Which has the greater quantity, the Philosopher&#x27;s Stone or the Ether?</td><td>ABSTAIN</td><td>—</td><td>46.0 µs</td><td>✓</td></tr>
+<tr><td class="row-num">81</td><td>TRAP</td><td>Which item has the role &quot;Time travel&quot;?</td><td>ABSTAIN</td><td>—</td><td>22.7 µs</td><td>✓</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="ledger-panel">
+      <div class="ledger-scroll">
+        <table id="ledger-table" class="ledger-table">
+          <thead><tr><th>#</th><th>name</th><th>type</th><th>location</th><th>role</th><th>quantity</th><th>unit</th><th>hazard</th><th>links</th></tr></thead>
+          <tbody>
+<tr class="evidence-row"><td class="row-num">1</td><td>Sulfuric Acid</td><td>Reagent</td><td class="evidence-cell">Cabinet A</td><td>Electrolyte for the galvanic battery bank</td><td>2000</td><td>mL</td><td>Class 3</td><td>Galvanic Battery Bank, Zinc Plates</td></tr>
+<tr><td class="row-num">2</td><td>Ether</td><td>Reagent</td><td>Cold Room</td><td>Anesthetic for specimen preparation</td><td>750</td><td>mL</td><td>Class 3</td><td>Specimen Jar Set, Operating Table</td></tr>
+<tr><td class="row-num">3</td><td>Copper Sulfate</td><td>Reagent</td><td>Cabinet A</td><td>Conductive bath for electroplating</td><td>1200</td><td>g</td><td>Class 2</td><td>Copper Coil, Copper Wire Spool</td></tr>
+<tr><td class="row-num">4</td><td>Nitric Acid</td><td>Reagent</td><td>Cabinet A</td><td>Etching agent for brass instruments</td><td>500</td><td>mL</td><td>Class 3</td><td>Brass Electrometer</td></tr>
+<tr><td class="row-num">5</td><td>Distilled Water</td><td>Reagent</td><td>Cabinet B</td><td>Solvent and coolant for condensers</td><td>5000</td><td>mL</td><td>Class 0</td><td>Condenser Array, Leyden Jar</td></tr>
+<tr><td class="row-num">6</td><td>Mercury</td><td>Reagent</td><td>Vault Shelf 1</td><td>Conductive fluid for switch contacts</td><td>300</td><td>g</td><td>Class 3</td><td>Spark Gap Transmitter</td></tr>
+<tr><td class="row-num">7</td><td>Phosphorus</td><td>Reagent</td><td>Vault Shelf 1</td><td>Luminescent marker for night trials</td><td>50</td><td>g</td><td>Class 3</td><td>Weather Observation Ledger</td></tr>
+<tr><td class="row-num">8</td><td>Ammonium Chloride</td><td>Reagent</td><td>Cabinet B</td><td>Salt for wet-cell electrolyte</td><td>800</td><td>g</td><td>Class 1</td><td>Galvanic Battery Bank</td></tr>
+<tr><td class="row-num">9</td><td>Beeswax</td><td>Reagent</td><td>Cabinet B</td><td>Sealant for jar lids and insulators</td><td>400</td><td>g</td><td>Class 0</td><td>Specimen Jar Set, Porcelain Insulator Set</td></tr>
+<tr><td class="row-num">10</td><td>Alcohol (Ethanol)</td><td>Reagent</td><td>Cold Room</td><td>Disinfectant for surgical tools</td><td>1500</td><td>mL</td><td>Class 2</td><td>Operating Table, Surgical Lamp Array</td></tr>
+<tr><td class="row-num">11</td><td>Iron Filings</td><td>Reagent</td><td>Cabinet B</td><td>Field-pattern tracing for magnet trials</td><td>250</td><td>g</td><td>Class 0</td><td>Electrostatic Generator</td></tr>
+<tr><td class="row-num">12</td><td>Silver Nitrate</td><td>Reagent</td><td>Vault Shelf 2</td><td>Staining agent for tissue samples</td><td>100</td><td>g</td><td>Class 2</td><td>Anatomical Atlas, Specimen Jar Set</td></tr>
+<tr><td class="row-num">13</td><td>Galvanic Battery Bank</td><td>Equipment</td><td>Cellar Rack</td><td>Primary direct-current power source</td><td>24</td><td>cells</td><td>Class 2</td><td>Sulfuric Acid, Copper Wire Spool, Operating Table</td></tr>
+<tr><td class="row-num">14</td><td>Lightning Rod Assembly</td><td>Equipment</td><td>North Tower</td><td>Atmospheric charge collector</td><td>1</td><td>assembly</td><td>Class 2</td><td>Copper Wire Spool, Condenser Array</td></tr>
+<tr><td class="row-num">15</td><td>Copper Coil</td><td>Equipment</td><td>Workbench 1</td><td>Induction coil for high-voltage steps</td><td>3</td><td>coils</td><td>Class 1</td><td>Copper Sulfate, Spark Gap Transmitter</td></tr>
+<tr><td class="row-num">16</td><td>Leyden Jar</td><td>Equipment</td><td>Vault Shelf 2</td><td>Charge storage capacitor</td><td>6</td><td>jars</td><td>Class 2</td><td>Distilled Water, Electrostatic Generator</td></tr>
+<tr><td class="row-num">17</td><td>Vacuum Pump</td><td>Equipment</td><td>Workbench 2</td><td>Air evacuation for glass vessels</td><td>1</td><td>pump</td><td>Class 1</td><td>Glass Bell Jar</td></tr>
+<tr><td class="row-num">18</td><td>Electrostatic Generator</td><td>Equipment</td><td>Workbench 1</td><td>Static charge generation by friction</td><td>1</td><td>generator</td><td>Class 2</td><td>Leyden Jar, Iron Filings</td></tr>
+<tr><td class="row-num">19</td><td>Condenser Array</td><td>Equipment</td><td>Vault Shelf 2</td><td>Parallel charge buffering bank</td><td>8</td><td>plates</td><td>Class 2</td><td>Lightning Rod Assembly, Distilled Water</td></tr>
+<tr><td class="row-num">20</td><td>Spark Gap Transmitter</td><td>Equipment</td><td>Workbench 2</td><td>Controlled discharge across electrodes</td><td>1</td><td>transmitter</td><td>Class 3</td><td>Copper Coil, Mercury</td></tr>
+<tr><td class="row-num">21</td><td>Hand-Crank Dynamo</td><td>Equipment</td><td>Workbench 2</td><td>Manual backup power generation</td><td>1</td><td>dynamo</td><td>Class 1</td><td>Galvanic Battery Bank</td></tr>
+<tr><td class="row-num">22</td><td>Brass Electrometer</td><td>Equipment</td><td>Glass Case</td><td>Charge magnitude measurement</td><td>1</td><td>instrument</td><td>Class 0</td><td>Nitric Acid</td></tr>
+<tr><td class="row-num">23</td><td>Dynamometer</td><td>Equipment</td><td>Workbench 1</td><td>Torque measurement for the hoist</td><td>1</td><td>instrument</td><td>Class 0</td><td>Hoist and Pulley</td></tr>
+<tr><td class="row-num">24</td><td>Porcelain Insulator Set</td><td>Equipment</td><td>Vault Shelf 1</td><td>High-voltage line insulation</td><td>16</td><td>pieces</td><td>Class 0</td><td>Beeswax, Lightning Rod Assembly</td></tr>
+<tr><td class="row-num">25</td><td>Insulated Clamp Set</td><td>Equipment</td><td>Workbench 1</td><td>Safe handling of charged conductors</td><td>10</td><td>clamps</td><td>Class 0</td><td>Copper Wire Spool</td></tr>
+<tr><td class="row-num">26</td><td>Galvanometer</td><td>Equipment</td><td>Glass Case</td><td>Current detection and deflection reading</td><td>1</td><td>instrument</td><td>Class 0</td><td>Brass Electrometer</td></tr>
+<tr><td class="row-num">27</td><td>Operating Table</td><td>Fixture</td><td>Main Hall</td><td>Central platform for the experiment</td><td>1</td><td>table</td><td>Class 1</td><td>Ether, Galvanic Battery Bank</td></tr>
+<tr><td class="row-num">28</td><td>Specimen Jar Set</td><td>Fixture</td><td>Glass Case</td><td>Preservation of tissue specimens</td><td>36</td><td>jars</td><td>Class 1</td><td>Ether, Silver Nitrate, Beeswax</td></tr>
+<tr><td class="row-num">29</td><td>Glass Bell Jar</td><td>Fixture</td><td>Workbench 2</td><td>Vacuum chamber cover</td><td>2</td><td>jars</td><td>Class 0</td><td>Vacuum Pump</td></tr>
+<tr><td class="row-num">30</td><td>Iron Restraint Frame</td><td>Fixture</td><td>Main Hall</td><td>Securing frame for the specimen platform</td><td>1</td><td>frame</td><td>Class 1</td><td>Iron Chain, Operating Table</td></tr>
+<tr><td class="row-num">31</td><td>Surgical Lamp Array</td><td>Fixture</td><td>Main Hall</td><td>Focused illumination of the platform</td><td>5</td><td>lamps</td><td>Class 1</td><td>Alcohol (Ethanol)</td></tr>
+<tr><td class="row-num">32</td><td>Hoist and Pulley</td><td>Fixture</td><td>Main Hall</td><td>Lifting of heavy apparatus</td><td>1</td><td>hoist</td><td>Class 1</td><td>Dynamometer, Iron Chain</td></tr>
+<tr><td class="row-num">33</td><td>Marble Slab</td><td>Fixture</td><td>Cellar Rack</td><td>Cooling surface for specimens</td><td>1</td><td>slab</td><td>Class 0</td><td>Specimen Jar Set</td></tr>
+<tr><td class="row-num">34</td><td>Ventilation Hood</td><td>Fixture</td><td>Main Hall</td><td>Fume extraction above the platform</td><td>1</td><td>hood</td><td>Class 0</td><td>Sulfuric Acid</td></tr>
+<tr><td class="row-num">35</td><td>Drainage Channel</td><td>Fixture</td><td>Cellar Rack</td><td>Fluid runoff from the cellar rack</td><td>1</td><td>channel</td><td>Class 0</td><td>Galvanic Battery Bank</td></tr>
+<tr><td class="row-num">36</td><td>Observation Rail</td><td>Fixture</td><td>North Tower</td><td>Safe viewing rail for charge trials</td><td>1</td><td>rail</td><td>Class 0</td><td>Lightning Rod Assembly</td></tr>
+<tr><td class="row-num">37</td><td>Experiment Logbook Volume I</td><td>Record</td><td>Reading Desk</td><td>Chronicle of the first charge trials</td><td>1</td><td>volume</td><td>Class 0</td><td>Experiment Logbook Volume II</td></tr>
+<tr><td class="row-num">38</td><td>Experiment Logbook Volume II</td><td>Record</td><td>Reading Desk</td><td>Chronicle of the revival trials</td><td>1</td><td>volume</td><td>Class 0</td><td>Experiment Logbook Volume I, Specimen Index Cards</td></tr>
+<tr><td class="row-num">39</td><td>Anatomical Atlas</td><td>Record</td><td>Reading Desk</td><td>Reference plates of human anatomy</td><td>1</td><td>atlas</td><td>Class 0</td><td>Silver Nitrate</td></tr>
+<tr><td class="row-num">40</td><td>Electrical Schemas Binder</td><td>Record</td><td>Reading Desk</td><td>Circuit diagrams for the tower array</td><td>1</td><td>binder</td><td>Class 0</td><td>Condenser Array, Lightning Rod Assembly</td></tr>
+<tr><td class="row-num">41</td><td>Specimen Index Cards</td><td>Record</td><td>Reading Desk</td><td>Catalog of preserved specimens</td><td>120</td><td>cards</td><td>Class 0</td><td>Specimen Jar Set</td></tr>
+<tr><td class="row-num">42</td><td>Weather Observation Ledger</td><td>Record</td><td>North Tower</td><td>Storm and pressure readings</td><td>1</td><td>ledger</td><td>Class 0</td><td>Phosphorus, Lightning Rod Assembly</td></tr>
+<tr><td class="row-num">43</td><td>Zinc Plates</td><td>Material</td><td>Cellar Rack</td><td>Anode plates for the battery bank</td><td>40</td><td>plates</td><td>Class 1</td><td>Sulfuric Acid, Galvanic Battery Bank</td></tr>
+<tr><td class="row-num">44</td><td>Copper Wire Spool</td><td>Material</td><td>Workbench 1</td><td>Conducting line for tower circuits</td><td>2</td><td>spools</td><td>Class 0</td><td>Lightning Rod Assembly, Galvanic Battery Bank, Insulated Clamp Set</td></tr>
+<tr><td class="row-num">45</td><td>Iron Chain</td><td>Material</td><td>Cellar Rack</td><td>Load securing for the hoist</td><td>15</td><td>meters</td><td>Class 0</td><td>Hoist and Pulley, Iron Restraint Frame</td></tr>
+<tr><td class="row-num">46</td><td>Silk Cloth Roll</td><td>Material</td><td>Cabinet B</td><td>Friction cloth for the electrostatic generator</td><td>4</td><td>rolls</td><td>Class 0</td><td>Electrostatic Generator</td></tr>
+<tr><td class="row-num">47</td><td>Leather Strap Set</td><td>Material</td><td>Main Hall</td><td>Restraint straps for the platform</td><td>8</td><td>straps</td><td>Class 0</td><td>Operating Table, Iron Restraint Frame</td></tr>
+<tr><td class="row-num">48</td><td>Glass Tube Bundle</td><td>Material</td><td>Vault Shelf 1</td><td>Spare tubes for discharge experiments</td><td>20</td><td>tubes</td><td>Class 1</td><td>Spark Gap Transmitter</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    Every answer is an exact lookup over the table above. Facts that are not in the table are answered with an abstention — never a guess. This page displays results streamed from the QNX target (serial JSON), rendered with the original Stitched Ledger styles.
+  </footer>
+</body>
+</html>
