@@ -33,6 +33,34 @@ applies the same discipline to embedded debugging on QNX:
   allocation anywhere. The ledger is a 256-entry static ring buffer; every
   store is a compile-time-sized static array.
 
+## How it differs from the usual tools
+
+- **Scrolling logs and printf debugging** record everything and answer
+  nothing: after an incident, a human reconstructs "what happened" from
+  memory and grep. The Blackbox keeps the record as a queryable ledger —
+  the answer is looked up, with its evidence cell, not reconstructed.
+- **Post-mortem dumps** capture state after the fact, including the
+  corruption the fault itself caused. Here the ledger is written as events
+  happen, in a separate address space: when the sensor process died in the
+  fault-injection runs, the record of its death — and of its respawn — was
+  written by a server that never stopped answering.
+- **Probabilistic assistants** answer fluently whether or not the record
+  contains the fact. The Blackbox has exactly two ways to stay silent —
+  `ABSTAIN_NO_RECORD` and `ABSTAIN_TIMEOUT` — and both are measured
+  behaviors, not error states.
+
+## Where this matters
+
+QNX runs in systems whose failures are investigated after the fact —
+vehicles, industrial controllers, medical and rail equipment. In those
+domains an audit answer is only useful if it is trustworthy: derived from
+the record, reproducible byte-for-byte, and honest when the record does
+not contain the fact. That is the property this tool is built and measured
+around — determinism (8,100 repeated queries, 0 mismatches) is not a
+performance statistic here; it is what makes the record admissible to a
+post-incident review. The same discipline transfers to any embedded target
+where "the log said so" is not evidence enough.
+
 ## Architecture (4 target modules + host bridge)
 
 | Module | File | Role |
